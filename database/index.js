@@ -5,7 +5,7 @@ const MONGO_URL = "mongodb+srv://spoilyzer:Manage-DB12@svcluster.kemmorw.mongodb
 const db = async () => {
   await mongoose
     .connect(MONGO_URL)
-    .then(() => console.log("DB FUNCIONANDO"))
+    .then(() => console.log("Esta todo OK. LA DATABASE FUNCIONA!"))
     .catch((error) => console.error(error));
 };
 

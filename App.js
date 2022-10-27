@@ -9,17 +9,17 @@ const app = express();
 app.use(cors());
 app.use(express.json());
 
-/* GET */
+// GET
 app.get("/products", controllers.getProducts);
 app.get("/products-cart", controllers.getProductsCart);
 
-/* POST */
+// POST
 app.post("/products-cart", controllers.addProductCart);
 
-/* PUT */
+// PUT
 app.put("/products-cart/:productId", controllers.putProduct);
 
-/* DELETE */
+// DELETE
 app.delete("/products-cart/:productId", controllers.deleteProduct);
 
 app.listen(4000, () => {

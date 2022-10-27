@@ -5,6 +5,7 @@ const ProductSchema = new Schema({
   img: { type: String, required: true },
   inCart: { type: Boolean, default: false },
   price: { type: Number, required: true },
+  provider: { type: String, required: true },
 });
 
 module.exports = model("Product", ProductSchema);
