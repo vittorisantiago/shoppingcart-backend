@@ -1,6 +1,7 @@
 import { Cart } from "../model/Cart";
+import { Request, Response } from "express";
 
-const getProductsCart = async (req: any, res: any) => {
+const getProductsCart = async (req: Request, res: Response) => {
   const productsCart = await Cart.find();
 
   if (productsCart) {

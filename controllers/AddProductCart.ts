@@ -1,7 +1,8 @@
 import  { Cart } from "../model/Cart";
 import { Product } from "../model/Product";
+import { Request, Response } from "express";
 
-const addProductCart = async (req: any, res: any) => {
+const addProductCart = async (req: Request, res: Response) => {
   const { name, img, price, provider } = req.body;
 
   // Nos fijamos si tenemos el producto

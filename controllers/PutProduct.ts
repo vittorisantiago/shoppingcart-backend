@@ -1,6 +1,7 @@
 import { Cart } from "../model/Cart";
+import { Request, Response } from "express";
 
-const putProduct = async (req: any, res: any) => {
+const putProduct = async (req: Request, res: Response) => {
   const { productId } = req.params;
   const { query } = req.query;
   const body = req.body;

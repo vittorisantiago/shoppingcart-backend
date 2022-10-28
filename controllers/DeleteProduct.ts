@@ -1,7 +1,8 @@
 import { Cart } from "../model/Cart";
 import { Product } from "../model/Product";
+import { Request, Response } from "express";
 
-const deleteProduct = async (req: any, res: any) => {
+const deleteProduct = async (req: Request, res: Response) => {
   const { productId } = req.params;
 
   // Buscamos el producto en el carrito

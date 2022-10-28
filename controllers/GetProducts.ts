@@ -1,6 +1,7 @@
 import { Product } from "../model/Product";
+import { Request, Response } from "express";
 
-const getProducts = async (req: any, res: any) => {
+const getProducts = async (req: Request, res: Response) => {
   const products = await Product.find();
 
   if (products) {
