@@ -16,10 +16,9 @@ const deleteProduct = async (req: Request, res: Response) => {
   // Buscamos y eliminamos el producto con la id
   await Cart.findByIdAndDelete(productId);
   
-  /* Buscamos y editamos la prop inCart: false */
-  /* Le pasamos la id del producto en la DB */
-  /* La prop a cambiar y las demas */
-  /* Y el new para devolver el producto editado */
+  // Buscamos y editamos la prop inCart: false
+  // Le pasamos la id del producto en la DB y las prop a cambiar
+  // El new para devolver el producto editado
   await Product.findByIdAndUpdate(
     _id,
     { inCart: false, name, img, price, provider },

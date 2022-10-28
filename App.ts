@@ -7,7 +7,7 @@ import controllers from './controllers';
 const app = express();
 
 app.use(cors());
-app.use(express.json());
+app.use(express.json()); // Middleware que transforma la req.body a un json
 
 // GET
 app.get("/products", controllers.getProducts);
