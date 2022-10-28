@@ -1,6 +1,6 @@
-const Cart = require("../model/Cart");
+import { Cart } from "../model/Cart";
 
-const putProduct = async (req, res) => {
+const putProduct = async (req: any, res: any) => {
   const { productId } = req.params;
   const { query } = req.query;
   const body = req.body;
@@ -42,4 +42,4 @@ const putProduct = async (req, res) => {
   }
 };
 
-module.exports = putProduct;
+export default putProduct;

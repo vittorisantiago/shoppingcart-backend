@@ -1,8 +1,8 @@
-const express = require("express");
-const cors = require("cors");
+import express from 'express';
+import cors from 'cors';
 
-const db = require("./database");
-const controllers = require("./controllers");
+import db from './database';
+import controllers from './controllers';
 
 const app = express();
 
@@ -27,4 +27,4 @@ app.listen(4000, () => {
   db();
 });
 
-module.exports = app;
+export default app;

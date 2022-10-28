@@ -1,6 +1,6 @@
-const Product = require("../model/Product");
+import { Product } from "../model/Product";
 
-const getProducts = async (req, res) => {
+const getProducts = async (req: any, res: any) => {
   const products = await Product.find();
 
   if (products) {
@@ -10,4 +10,4 @@ const getProducts = async (req, res) => {
   }
 };
 
-module.exports = getProducts;
+export default getProducts;

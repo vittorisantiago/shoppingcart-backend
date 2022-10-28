@@ -1,7 +1,7 @@
-const Cart = require("../model/Cart");
-const Product = require("../model/Product");
+import  { Cart } from "../model/Cart";
+import { Product } from "../model/Product";
 
-const addProductCart = async (req, res) => {
+const addProductCart = async (req: any, res: any) => {
   const { name, img, price } = req.body;
 
   /* Nos fijamos si tenemos el producto */
@@ -46,4 +46,4 @@ const addProductCart = async (req, res) => {
   }
 };
 
-module.exports = addProductCart;
+export default addProductCart;

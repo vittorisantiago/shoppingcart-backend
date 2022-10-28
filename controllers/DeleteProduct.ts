@@ -1,7 +1,7 @@
-const Cart = require("../model/Cart");
-const Product = require("../model/Product");
+import { Cart } from "../model/Cart";
+import { Product } from "../model/Product";
 
-const deleteProduct = async (req, res) => {
+const deleteProduct = async (req: any, res: any) => {
   const { productId } = req.params;
 
   /* Buscamos el producto en el carrito */
@@ -32,4 +32,4 @@ const deleteProduct = async (req, res) => {
     .catch((error) => res.json({ mensaje: "Hubo un error" }));
 };
 
-module.exports = deleteProduct;
+export default deleteProduct;

@@ -1,4 +1,4 @@
-const mongoose = require("mongoose");
+import mongoose from 'mongoose';
 
 const MONGO_URL = "mongodb+srv://spoilyzer:Manage-DB12@svcluster.kemmorw.mongodb.net/test";
 
@@ -9,4 +9,4 @@ const db = async () => {
     .catch((error) => console.error(error));
 };
 
-module.exports = db
+export default db

@@ -1,4 +1,4 @@
-const { model, Schema } = require("mongoose");
+import { model, Schema } from "mongoose";
 
 const CartSchema = new Schema({
   name: { type: String, required: true, unique: true },
@@ -7,4 +7,4 @@ const CartSchema = new Schema({
   price: { type: Number, required: true },
 });
 
-module.exports = model("Cart", CartSchema);
+export const Cart = model("Cart", CartSchema);

@@ -1,6 +1,6 @@
-const Cart = require("../model/Cart");
+import { Cart } from "../model/Cart";
 
-const getProductsCart = async (req, res) => {
+const getProductsCart = async (req: any, res: any) => {
   const productsCart = await Cart.find();
 
   if (productsCart) {
@@ -10,4 +10,4 @@ const getProductsCart = async (req, res) => {
   }
 };
 
-module.exports = getProductsCart;
+export default getProductsCart;
