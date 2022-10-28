@@ -2,31 +2,31 @@ import  { Cart } from "../model/Cart";
 import { Product } from "../model/Product";
 
 const addProductCart = async (req: any, res: any) => {
-  const { name, img, price } = req.body;
+  const { name, img, price, provider } = req.body;
 
-  /* Nos fijamos si tenemos el producto */
+  // Nos fijamos si tenemos el producto
   const estaEnProducts = await Product.findOne({ name });
 
-  /* Nos fijamos si todos los campos vienen con info */
-  const noEstaVacio = name !== "" && img !== "" && price !== "";
+  // Nos fijamos si todos los campos vienen con info
+  const noEstaVacio = name !== "" && img !== "" && price !== "" && provider !== "";
 
-  /* Nos fijamos si el producto ya esta en el carrito */
+  // Nos fijamos si el producto ya esta en el carrito
   const estaEnElCarrito = await Cart.findOne({ name });
 
-  /* Si no tenemos el producto */
+  // Si no tenemos el producto
   if (!estaEnProducts) {
     res.status(400).json({
       mensaje: "Este producto no se encuentra en nuestra base de datos",
     });
 
-    /* Si nos envian algo y no esta en el carrito lo agregamos */
+    // Si nos envian algo y no esta en el carrito lo agregamos
   } else if (noEstaVacio && !estaEnElCarrito) {
-    const newProductInCart = new Cart({ name, img, price, amount: 1 });
+    const newProductInCart = new Cart({ name, img, price, amount: 1, provider });
 
-    /* Y actualizamos la prop inCart: true en nuestros productos */
+    // Y actualizamos la prop inCart: true en nuestros productos
     await Product.findByIdAndUpdate(
       estaEnProducts?._id,
-      { inCart: true, name, img, price },
+      { inCart: true, name, img, price, provider },
       { new: true }
     )
       .then((product) => {
@@ -38,7 +38,7 @@ const addProductCart = async (req: any, res: any) => {
       })
       .catch((error) => console.error(error));
 
-    /* Y si esta en el carrito avisamos */
+    // Y si esta en el carrito avisamos
   } else if (estaEnElCarrito) {
     res.status(400).json({
       mensaje: "El producto ya esta en el carrito",

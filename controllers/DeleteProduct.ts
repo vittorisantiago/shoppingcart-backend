@@ -4,15 +4,15 @@ import { Product } from "../model/Product";
 const deleteProduct = async (req: any, res: any) => {
   const { productId } = req.params;
 
-  /* Buscamos el producto en el carrito */
+  // Buscamos el producto en el carrito
   const productInCart = await Cart.findById(productId);
 
-  /* Buscamos el producto en nuestra DB por el nombre del que esta en el carrito */
-  const { name, img, price, _id } = await Product.findOne({
+  // Buscamos el producto en nuestra DB por el nombre del que esta en el carrito
+  const { name, img, price, _id, provider } = await Product.findOne({
     name: productInCart.name,
   });
 
-  /* Buscamos y eliminamos el producto con la id */
+  // Buscamos y eliminamos el producto con la id
   await Cart.findByIdAndDelete(productId);
   
   /* Buscamos y editamos la prop inCart: false */
@@ -21,7 +21,7 @@ const deleteProduct = async (req: any, res: any) => {
   /* Y el new para devolver el producto editado */
   await Product.findByIdAndUpdate(
     _id,
-    { inCart: false, name, img, price },
+    { inCart: false, name, img, price, provider },
     { new: true }
   )
     .then((product) => {

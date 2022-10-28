@@ -4,7 +4,7 @@ import addProductCart from "./AddProductCart";
 import putProduct from "./PutProduct";
 import deleteProduct from "./DeleteProduct";
 
-export = {
+export default {
   getProducts,
   getProductsCart,
   addProductCart,
