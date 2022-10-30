@@ -1,4 +1,4 @@
-import mongoose from 'mongoose';
+import mongoose from 'mongoose'; // Librería para Node.js que nos permite escribir consultas para una base de datos de MongoDB
 
 const MONGO_URL = "mongodb+srv://spoilyzer:Manage-DB12@svcluster.kemmorw.mongodb.net/test";
 

@@ -8,7 +8,7 @@
     "dev": "nodemon App.ts"
   },
   "keywords": [],
-  "author": "",
+  "author": "Santiago Vittori",
   "license": "ISC",
   "dependencies": {
     "@types/cors": "^2.8.12",

@@ -1,5 +1,6 @@
 import { model, Schema } from "mongoose";
 
+// Establecemos las propiedades y tipos del objeto
 const ProductSchema = new Schema({
   name: { type: String, required: true, unique: true },
   img: { type: String, required: true },

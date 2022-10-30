@@ -13,7 +13,7 @@ const putProduct = async (req: Request, res: Response) => {
     const { name, img, price, _id, provider } = await Product.findOne({
       name: productInCart.name,
     });
-
+    // Si esta el producto en el carrito y quiero aumentar la cantidad
     if (productInCart && query === "add") {
       body.amount = body.amount + 1;
   
@@ -25,7 +25,7 @@ const putProduct = async (req: Request, res: Response) => {
           product,
         });
       });
-    // Si esta el producto en el carrito y lo quiero sacar
+    // Si esta el producto en el carrito y quiero disminuir la cantidad
     } else if (productInCart && query === "del") {
       body.amount = body.amount - 1;
   
@@ -52,7 +52,7 @@ const putProduct = async (req: Request, res: Response) => {
     } else if (body.amount < 0) {
       res.status(400).json({ mensaje: "Ocurrió un error, no se pueden ingresar números negativos." });
     } else {
-      // Buscamos el producto en el carrito para editar algun campo del body
+      // Buscamos el producto en el carrito para editar algún campo del body
     await Cart.findByIdAndUpdate(productId, body, {new: true,})
     .then((product) => {
       res.json({
@@ -65,37 +65,5 @@ const putProduct = async (req: Request, res: Response) => {
     res.status(400).json({ mensaje: "Ocurrió un error" });
   }
 };
-
-/* 
-    // Si no hay query 'add' o 'del'
-  if (productInCart && query === "add") {
-    body.amount = body.amount + 1;
-
-    await Cart.findByIdAndUpdate(productId, body, {
-      new: true,
-    }).then((product) => {
-      res.json({
-        mensaje: `El producto: ${product.name} fue actualizado`,
-        product,
-      });
-    });
-
-    // Si esta el producto en el carrito y lo quiero sacar
-  } else if (productInCart && query === "del") {
-    body.amount = body.amount - 1;
-
-    await Cart.findByIdAndUpdate(productId, body, {
-      new: true,
-    }).then((product) =>
-      res.json({
-        mensaje: `El producto: ${product.name} fue actualizado`,
-        product,
-      })
-    );
-  } else {
-    res.status(400).json({ mensaje: "Ocurrio un error" });
-  }
-  
-*/
 
 export default putProduct;

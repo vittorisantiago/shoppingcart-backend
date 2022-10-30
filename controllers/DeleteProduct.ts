@@ -5,7 +5,7 @@ import { Request, Response } from "express";
 const deleteProduct = async (req: Request, res: Response) => {
   const { productId } = req.params;
 
-  // Buscamos el producto en el carrito
+  // Buscamos el producto en el carrito por id
   const productInCart = await Cart.findById(productId);
 
   // Buscamos el producto en nuestra DB por el nombre del que esta en el carrito

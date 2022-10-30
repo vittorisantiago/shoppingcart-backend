@@ -11,7 +11,7 @@ const addProductCart = async (req: Request, res: Response) => {
   // Nos fijamos si todos los campos vienen con info
   const noEstaVacio = name !== "" && img !== "" && price !== "" && provider !== "";
 
-  // Nos fijamos si el producto ya esta en el carrito
+  // Nos fijamos si el producto ya está en el carrito
   const estaEnElCarrito = await Cart.findOne({ name });
 
   // Si no tenemos el producto
@@ -20,7 +20,7 @@ const addProductCart = async (req: Request, res: Response) => {
       mensaje: "Este producto no se encuentra en nuestra base de datos",
     });
 
-    // Si nos envian algo y no esta en el carrito lo agregamos
+    // Si los campos no están vacios y no esta en el carrito, lo agregamos
   } else if (noEstaVacio && !estaEnElCarrito) {
     const newProductInCart = new Cart({ name, img, price, amount: 1, provider });
 
@@ -39,7 +39,7 @@ const addProductCart = async (req: Request, res: Response) => {
       })
       .catch((error) => console.error(error));
 
-    // Y si esta en el carrito avisamos
+    // Y si está en el carrito, avisamos
   } else if (estaEnElCarrito) {
     res.status(400).json({
       mensaje: "El producto ya esta en el carrito",
