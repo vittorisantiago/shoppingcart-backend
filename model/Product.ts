@@ -7,6 +7,7 @@ const ProductSchema = new Schema({
   inCart: { type: Boolean, default: false },
   price: { type: Number, required: true },
   provider: { type: String, required: true },
+  stock: { type: Number, required: true },
 });
 
 export const Product = model("Product", ProductSchema);

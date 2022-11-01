@@ -10,12 +10,14 @@ const putProduct = async (req: Request, res: Response) => {
 
     const productInCart = await Cart.findById(productId);
 
-    const { name, img, price, _id, provider } = await Product.findOne({
+    const { name, img, price, _id, provider, stock } = await Product.findOne({
       name: productInCart.name,
     });
     // Si esta el producto en el carrito y quiero aumentar la cantidad
-    if (productInCart && query === "add") {
+    if (productInCart && query === "add" && body.stock > 0) 
+    {
       body.amount = body.amount + 1;
+      body.stock = body.stock - 1;
   
       await Cart.findByIdAndUpdate(productId, body, {
         new: true,
@@ -25,9 +27,15 @@ const putProduct = async (req: Request, res: Response) => {
           product,
         });
       });
+    } 
+    else if (productInCart && query === "add" && body.stock === 0) 
+    {
+      res.status(400).json({ mensaje: "No hay más stock!" });
+    }
     // Si esta el producto en el carrito y quiero disminuir la cantidad
-    } else if (productInCart && query === "del") {
+    else if (productInCart && query === "del") {
       body.amount = body.amount - 1;
+      body.stock = body.stock + 1;
   
       await Cart.findByIdAndUpdate(productId, body, {
         new: true,
@@ -38,7 +46,8 @@ const putProduct = async (req: Request, res: Response) => {
         })
       );
     }
-    else if(body.amount === 0) {
+    else if(body.amount === 0) 
+    {
       await Cart.findByIdAndDelete(productId);
       await Product.findByIdAndUpdate(
         _id,
@@ -49,17 +58,27 @@ const putProduct = async (req: Request, res: Response) => {
           mensaje: `El producto ${product.name} fue eliminado del carrito`,
         });
       });
-    } else if (body.amount < 0) {
-      res.status(400).json({ mensaje: "Ocurrió un error, no se pueden ingresar números negativos." });
-    } else {
-      // Buscamos el producto en el carrito para editar algún campo del body
-    await Cart.findByIdAndUpdate(productId, body, {new: true,})
-    .then((product) => {
-      res.json({
-        mensaje: `El producto: ${product.name} fue actualizado`,
-        product,
-      });
-    });
+    } 
+    else if (body.amount < 0) 
+    {
+      res.status(400).json({ mensaje: "No se pueden ingresar números negativos." });
+    }
+    else if (body.amount > stock) 
+    {
+      res.status(400).json({ mensaje: "No hay suficiente stock!" });
+    }
+    else
+    {
+      body.stock = stock - body.amount;
+      await Cart.findByIdAndUpdate(
+        productId, body, 
+        {new: true,}
+        ).then((product) =>
+        res.json({
+          mensaje: `El producto: ${product.name} fue actualizado`,
+          product,
+        })
+      );      
     }
   } catch (error) {
     res.status(400).json({ mensaje: "Ocurrió un error" });

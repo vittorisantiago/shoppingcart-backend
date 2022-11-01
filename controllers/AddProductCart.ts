@@ -3,13 +3,13 @@ import { Product } from "../model/Product";
 import { Request, Response } from "express";
 
 const addProductCart = async (req: Request, res: Response) => {
-  const { name, img, price, provider } = req.body;
+  const { name, img, price, provider, stock} = req.body;
 
   // Nos fijamos si tenemos el producto
   const estaEnProducts = await Product.findOne({ name });
 
   // Nos fijamos si todos los campos vienen con info
-  const noEstaVacio = name !== "" && img !== "" && price !== "" && provider !== "";
+  const noEstaVacio = name !== "" && img !== "" && price !== "" && provider !== "" && stock !== "";
 
   // Nos fijamos si el producto ya está en el carrito
   const estaEnElCarrito = await Cart.findOne({ name });
@@ -22,7 +22,7 @@ const addProductCart = async (req: Request, res: Response) => {
 
     // Si los campos no están vacios y no esta en el carrito, lo agregamos
   } else if (noEstaVacio && !estaEnElCarrito) {
-    const newProductInCart = new Cart({ name, img, price, amount: 1, provider });
+    const newProductInCart = new Cart({ name, img, price, amount: 1, provider, stock: stock-1 });
 
     // Y actualizamos la prop inCart: true en nuestros productos
     await Product.findByIdAndUpdate(
