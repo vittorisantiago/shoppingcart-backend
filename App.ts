@@ -1,4 +1,4 @@
-import express from 'express'; // Es el framework web mas popular de Node
+import express from 'express';
 import cors from 'cors';
 /* Cross-Origin Resources Sharing, es una política a nivel de navegador
 web para prevenir que el dominio A acceda a recursos del dominio B */
