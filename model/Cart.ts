@@ -1,5 +1,15 @@
 import { model, Schema } from "mongoose";
 
+// Definimos una interfaz para realizar validaciones de estructuras obligatorias dentro el código
+interface Cart {
+  name: string;
+  img: string;
+  amount: number;
+  price: number;
+  provider: string;
+  stock: number;
+}
+
 // Establecemos las propiedades y tipos del objeto
 const CartSchema = new Schema({
   name: { type: String, required: true, unique: true },
@@ -10,4 +20,4 @@ const CartSchema = new Schema({
   stock: { type: Number, required: true },
 });
 
-export const Cart = model("Cart", CartSchema);
+module.exports = model<Cart>("Cart", CartSchema);
