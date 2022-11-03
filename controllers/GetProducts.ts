@@ -7,11 +7,11 @@ const getProducts = async (req: Request, res: Response) => {
 
   if (products) 
   {
-    res.json({ products });
+    res.status(200).json({ products });
   } 
   else 
   {
-    res.json({ mensaje: "No hay productos" });
+    res.status(400).json({ mensaje: "No hay productos" });
   }
 };
 

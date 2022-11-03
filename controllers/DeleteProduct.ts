@@ -27,11 +27,11 @@ const deleteProduct = async (req: Request, res: Response) => {
       { new: true }
     )
       .then((product) => {
-        res.json({
+        res.status(200).json({
           mensaje: `El producto ${product.name} fue eliminado del carrito`,
         });
       })
-      .catch((error) => res.json({ mensaje: "Hubo un error" }));
+      .catch((error) => res.status(400).json({ mensaje: "Hubo un error" }));
   }
   catch (error)
   {

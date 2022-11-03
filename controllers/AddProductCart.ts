@@ -39,7 +39,7 @@ const addProductCart = async (req: Request, res: Response) => {
       )
         .then((product) => {
           newProductInCart.save();
-          res.json({
+          res.status(200).json({
             mensaje: `El producto fue agregado al carrito`,
             product,
           });

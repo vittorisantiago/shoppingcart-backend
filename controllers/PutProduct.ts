@@ -22,7 +22,7 @@ const putProduct = async (req: Request, res: Response) => {
       await Cart.findByIdAndUpdate(productId, body, {
         new: true,
       }).then((product) => {
-        res.json({
+        res.status(200).json({
           mensaje: `El producto: ${product.name} fue actualizado`,
           product,
         });
@@ -40,7 +40,7 @@ const putProduct = async (req: Request, res: Response) => {
       await Cart.findByIdAndUpdate(productId, body, {
         new: true,
       }).then((product) =>
-        res.json({
+        res.status(200).json({
           mensaje: `El producto: ${product.name} fue actualizado`,
           product,
         })
@@ -54,7 +54,7 @@ const putProduct = async (req: Request, res: Response) => {
         { inCart: false, name, img, price, provider },
         { new: true }
       ).then((product) => {
-        res.json({
+        res.status(200).json({
           mensaje: `El producto ${product.name} fue eliminado del carrito`,
         });
       });
@@ -74,7 +74,7 @@ const putProduct = async (req: Request, res: Response) => {
         productId, body, 
         {new: true,}
         ).then((product) =>
-        res.json({
+        res.status(200).json({
           mensaje: `El producto: ${product.name} fue actualizado`,
           product,
         })
