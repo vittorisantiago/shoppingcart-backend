@@ -20,4 +20,4 @@ const ProductSchema = new Schema({
   stock: { type: Number, required: true },
 });
 
-module.exports = model<Product>("Product", ProductSchema);
+export default model<Product>("Product", ProductSchema);

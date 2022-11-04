@@ -1,5 +1,5 @@
-import { Cart } from "../model/Cart";
-import { Product } from "../model/Product";
+import Cart from "../model/Cart";
+import Product from "../model/Product";
 import { Request, Response } from "express";
 
 const cartController = 
@@ -43,19 +43,13 @@ const cartController =
       });
   
       // Nos fijamos si todos los campos vienen con info
-      const noEstaVacio = name !== "" && img !== "" && price !== "" && provider !== "" && stock !== "";
+      const noEstaVacio = name !== "";
   
       // Nos fijamos si el producto ya está en el carrito
       const estaEnElCarrito = await Cart.findOne({ name });
   
-      // Si no tenemos el producto
-      if (!estaEnProducts) {
-        res.status(400).json({
-          mensaje: "Este producto no se encuentra en nuestra base de datos",
-        });
-      } 
       // Si los campos no están vacios y no esta en el carrito, lo agregamos
-      else if (noEstaVacio && !estaEnElCarrito) 
+      if (noEstaVacio && !estaEnElCarrito) 
       {
         const newProductInCart = new Cart({ name, img, price, amount: 1, provider, stock: stock-1 });
   
@@ -75,16 +69,16 @@ const cartController =
           .catch((error) => console.error(error));
       } 
       // Y si está en el carrito, avisamos
-      else if (estaEnElCarrito) 
+      else if (estaEnElCarrito)
       {
         res.status(400).json({
-          mensaje: "El producto ya esta en el carrito",
+          mensaje: 'El producto ya esta en el carrito',
         });
       }
       }
       catch (error) 
       {
-        res.status(500).json({ mensaje: "Ocurrió un error" });
+        res.status(500).json({ mensaje: "Ocurrió un error, el producto no se encontró." });
       }
   },
   putProduct: async (req: Request, res: Response) => {

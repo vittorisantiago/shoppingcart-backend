@@ -20,4 +20,4 @@ const CartSchema = new Schema({
   stock: { type: Number, required: true },
 });
 
-module.exports = model<Cart>("Cart", CartSchema);
+export default model<Cart>("Cart", CartSchema);
