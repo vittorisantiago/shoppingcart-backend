@@ -5,14 +5,9 @@ const getProducts = async (req: Request, res: Response) => {
   
   const products = await Product.find();
 
-  if (products) 
-  {
-    res.status(200).json({ products });
-  } 
-  else 
-  {
-    res.status(400).json({ mensaje: "No hay productos" });
-  }
+  if (!products) return res.status(400).json({ mensaje: "No hay productos" });
+  res.status(200).json({ products });
+
 };
 
 export default getProducts;

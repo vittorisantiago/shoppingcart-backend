@@ -43,7 +43,7 @@ const cartController =
       });
   
       // Nos fijamos si todos los campos vienen con info
-      const noEstaVacio = name !== "";
+      const noEstaVacio = Boolean(name);
   
       // Nos fijamos si el producto ya está en el carrito
       const estaEnElCarrito = await Cart.findOne({ name });
