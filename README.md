@@ -14,7 +14,7 @@ Proyecto universitario para hacer un Shopping Cart del lado del backend con la u
 </div>
 
 ### 👨🏽‍💻 Author
-- [@spoilyzer](https://www.github.com/spoilyzer) - Santiago Vittori
+- [@vittorisantiago](https://www.github.com/vittorisantiago) - Santiago Vittori
 
 ### 🙋🏽‍♂️ About Me
 Estudiante de la carrera Ingeniería en Sistemas - UAI 🎓<br>
